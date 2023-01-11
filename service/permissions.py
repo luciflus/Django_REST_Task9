@@ -8,8 +8,3 @@ class IsAuthorPermission(BasePermission):
             obj.profile == request.user.profile and
             obj.profile.is_sender == True)
 
-class IsPassengerPermission(BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if request.method in SAFE_METHODS:
-            return True
-
