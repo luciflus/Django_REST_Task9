@@ -28,7 +28,6 @@ acc_router.register('register', acc_view.ProfileRegisterAPIView)
 
 serv_router = DefaultRouter()
 serv_router.register('taxi', serv_view.TaxiViewSet)
-serv_router.register('order', serv_view.OrderViewSet)
 serv_router.register('raiting', serv_view.StatusTypeViewSet)
 
 urlpatterns = [
@@ -38,5 +37,8 @@ urlpatterns = [
 
     path('api/account/', include(acc_router.urls)),
     path('api/service/', include(serv_router.urls)),
+
+    path('api/service/taxi/<int:taxi_id>/order/', serv_view.OrderListCreateAPIView.as_view()),
+    path('api/service/taxi/<int:taxi_id>/order/<int:pk>/', serv_view.OrderRetrieveUpdateDestroyAPIView.as_view()),
    # path('api/raiting/', include(serv_router.urls)),
 ]
