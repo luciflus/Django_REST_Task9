@@ -14,7 +14,7 @@ class TaxiViewSet(viewsets.ModelViewSet):
     queryset = Taxi.objects.all()
     serializer_class = TaxiSerializer
     #permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsAuthorPermission]
-    permission_classes = [IsAuthorPermission]
+    permission_classes = [IsAuthorPermission, ]
 
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user.profile)
@@ -40,7 +40,7 @@ class TaxiViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsCustomerPermission]
+    permission_classes = [IsCustomerPermission, ]
 
     def perform_create(self, serializer):
         serializer.save(profile=self.request.user.profile)
